@@ -63,12 +63,12 @@ body::before{
   mix-blend-mode:screen;
 }
 .pawn i{font-size:inherit;color:var(--gold);}
-.pawn.p1{font-size:64px;top:12%;left:8%;animation-delay:0s;opacity:.85;}
-.pawn.p2{font-size:48px;top:18%;left:16%;animation-delay:-3s;opacity:.6;}
-.pawn.p3{font-size:80px;bottom:10%;right:10%;animation-delay:-6s;opacity:.8;}
-.pawn.p4{font-size:54px;bottom:20%;right:18%;animation-delay:-9s;opacity:.55;}
-.pawn.p5{font-size:38px;top:55%;left:4%;animation-delay:-2s;opacity:.45;}
-.pawn.p6{font-size:42px;top:60%;right:6%;animation-delay:-5s;opacity:.5;}
+.pawn.p1{font-size:32px;top:12%;left:8%;animation-delay:0s;opacity:.5;}
+.pawn.p2{font-size:24px;top:18%;left:16%;animation-delay:-3s;opacity:.35;}
+.pawn.p3{font-size:40px;bottom:10%;right:10%;animation-delay:-6s;opacity:.45;}
+.pawn.p4{font-size:28px;bottom:20%;right:18%;animation-delay:-9s;opacity:.3;}
+.pawn.p5{font-size:20px;top:55%;left:4%;animation-delay:-2s;opacity:.25;}
+.pawn.p6{font-size:22px;top:60%;right:6%;animation-delay:-5s;opacity:.3;}
 
 @keyframes drift{
   0%,100%{transform:translate3d(0,0,0) rotate(0deg);}
@@ -175,7 +175,7 @@ section{position:relative;z-index:1;padding:7rem 6vw;}
   width:220px;text-align:center;
 }
 .step-circle{
-  width:135px;height:135px;border-radius:50%;
+  width:100px;height:100px;border-radius:50%;
   margin:0 auto 1.3rem;
   display:flex;align-items:center;justify-content:center;
   position:relative;
@@ -198,7 +198,7 @@ section{position:relative;z-index:1;padding:7rem 6vw;}
 .step:hover .step-circle{transform:translateY(-8px);box-shadow:0 0 0 1px rgba(207,168,85,0.15),0 0 60px rgba(224,122,69,0.32);}
 .step-num{
   font-family:'TS Safaa','Lalezar',sans-serif;
-  font-size:2rem;color:var(--gold);
+  font-size:1.5rem;color:var(--gold);
   text-shadow:0 0 18px rgba(207,168,85,0.6);
 }
 .step h3{
@@ -328,6 +328,15 @@ footer .roman-foot{
 @media(max-width:640px){
   .process-steps{gap:2.2rem;}
   section{padding:5rem 6vw;}
+  .step-circle{width:75px;height:75px;}
+  .step-num{font-size:1.2rem;}
+  .step h3{font-size:1.1rem;}
+  .pawn.p1,.pawn.p2,.pawn.p3,.pawn.p4,.pawn.p5,.pawn.p6{transform:scale(0.7);}
+  .service-icon{width:58px;height:58px;}
+  .service-icon i{font-size:1.3rem;}
+  .contact-box{width:160px;padding:1.6rem 0.8rem;}
+  .contact-box i{font-size:1.4rem;}
+  .t-card{padding:1.6rem 1.2rem;}
 }
 </style>
 </head>

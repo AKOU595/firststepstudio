@@ -46,6 +46,12 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 6vw;displa
   .ctrl-btn{width:38px;height:38px;font-size:0.85rem;}
   .play-center{width:60px;height:60px;font-size:1.3rem;}
 }
+/* ─── SCROLL HINT ─── */
+.scroll-hint{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:50;display:flex;flex-direction:column;align-items:center;gap:0.3rem;animation:fadeHint 3s ease-in-out infinite;}
+.scroll-hint i{font-size:1.2rem;color:var(--foam-dim);opacity:0.5;animation:bounceArrow 1.8s ease-in-out infinite;}
+.scroll-hint span{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--foam-dim);opacity:0.5;direction:ltr;}
+@keyframes bounceArrow{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+@keyframes fadeHint{0%,100%{opacity:0.6;}50%{opacity:1;}}
 </style>
 </head>
 <body>
@@ -114,6 +120,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 6vw;displa
 </div>
 
 <div class="counter">1 / 5</div>
+<div class="scroll-hint"><i class="fa-solid fa-chevron-down"></i><span>Scroll</span></div>
 
 <script>
 (function(){
