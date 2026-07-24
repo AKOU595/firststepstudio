@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Over · First Step Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@700&family=Tajawal:wght@300;400;500;700&family=Cormorant+Garamond:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--black:#0a0a0c;--santiago:#e07a45;--santiago-2:#f4995f;--foam:#e6f4f2;--foam-dim:#b9d4d0;--gold:#cfa855;--gold-2:#8a6f2f;--glass-bd:rgba(255,255,255,0.10);}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth;}
+body{background:var(--black);color:var(--foam);font-family:'Tajawal',sans-serif;overflow-x:hidden;}
+header{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 6vw;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(10,10,12,0.9) 60%,transparent);direction:ltr;}
+.back{color:var(--foam-dim);text-decoration:none;font-size:0.8rem;letter-spacing:0.15em;padding:0.5rem 1rem;border:1px solid var(--glass-bd);border-radius:50px;transition:all .3s ease;}
+.back:hover{color:var(--santiago-2);border-color:rgba(207,168,85,0.4);}
+.badge{display:flex;align-items:center;gap:0.6rem;color:var(--gold);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;}
+.reel-feed{width:100%;}
+.reel-item{position:relative;width:100%;height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;background:var(--black);overflow:hidden;}
+.reel-item video{width:100%;height:100%;object-fit:contain;background:#000;cursor:pointer;}
+.reel-overlay{position:absolute;inset:0;pointer-events:none;z-index:10;background:linear-gradient(0deg,rgba(10,10,12,0.7) 0%,transparent 40%,transparent 70%,rgba(10,10,12,0.3) 100%);opacity:0;transition:opacity .5s ease;}
+.reel-item:hover .reel-overlay,.reel-item.paused .reel-overlay{opacity:1;}
+.reel-overlay .top-left{position:absolute;top:2rem;right:2rem;pointer-events:auto;}
+.reel-overlay .top-right{position:absolute;top:2rem;left:2rem;display:flex;flex-direction:column;gap:0.8rem;pointer-events:auto;}
+.reel-overlay .bottom{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);text-align:center;pointer-events:auto;width:80%;}
+.vid-label{font-family:'Aref Ruqaa',serif;font-size:1.1rem;text-shadow:0 2px 8px rgba(0,0,0,0.6);}
+.vid-label span{display:inline-block;background:rgba(207,168,85,0.2);border:1px solid rgba(207,168,85,0.3);border-radius:50px;padding:0.2rem 1rem;font-size:0.7rem;font-family:'Tajawal',sans-serif;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.5rem;direction:ltr;}
+.ctrl-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--glass-bd);background:rgba(10,10,12,0.6);backdrop-filter:blur(12px);color:var(--foam);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s ease;pointer-events:auto;font-size:1rem;}
+.ctrl-btn:hover{background:rgba(207,168,85,0.2);border-color:rgba(207,168,85,0.4);color:var(--gold);}
+.play-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72px;height:72px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);background:rgba(10,10,12,0.5);backdrop-filter:blur(8px);color:var(--foam);display:none;align-items:center;justify-content:center;cursor:pointer;font-size:1.6rem;pointer-events:auto;z-index:15;transition:all .3s ease;}
+.reel-item.paused .play-center{display:flex;}
+.progress-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.1);z-index:20;}
+.progress-bar .fill{height:100%;width:0%;background:linear-gradient(90deg,var(--santiago),var(--gold));transition:width .1s linear;}
+.counter{position:fixed;bottom:2rem;right:2rem;z-index:50;direction:ltr;font-size:0.75rem;color:var(--foam-dim);letter-spacing:0.1em;font-weight:300;background:rgba(10,10,12,0.5);backdrop-filter:blur(12px);padding:0.4rem 1rem;border-radius:50px;border:1px solid var(--glass-bd);}
+.reel-status{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;text-align:center;pointer-events:none;}
+.reel-status i{font-size:2rem;color:var(--foam-dim);opacity:0.5;}
+.reel-status span{display:block;font-size:0.75rem;color:var(--foam-dim);margin-top:0.5rem;direction:ltr;}
+.reel-item.loaded .reel-status{opacity:0;transition:opacity .5s;}
+.reel-item.error .reel-status i{color:var(--santiago);opacity:1;}
+@media(max-width:640px){
+  header{padding:0.8rem 4vw;}
+  .vid-label{font-size:0.95rem;}
+  .reel-overlay .top-left{top:1.2rem;right:1.2rem;}
+  .reel-overlay .top-right{top:1.2rem;left:1.2rem;}
+  .reel-overlay .bottom{bottom:1.5rem;}
+  .ctrl-btn{width:38px;height:38px;font-size:0.85rem;}
+  .play-center{width:60px;height:60px;font-size:1.3rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="back" href="index.html"><i class="fa-solid fa-arrow-left"></i> Back</a>
+  <div class="badge"><i class="fa-solid fa-microphone"></i> Voice Over</div>
+</header>
+
+<div class="reel-feed">
+  <div class="reel-item">
+    <div class="reel-status"><i class="fa-solid fa-spinner fa-pulse"></i><span>loading</span></div>
+    <div class="reel-overlay">
+      <div class="top-left"><div class="vid-label"><span>Voice Over</span></div></div>
+      <div class="top-right"></div>
+      <div class="play-center"><i class="fa-solid fa-play"></i></div>
+      <div class="bottom"><div class="vid-label">إعلان</div></div>
+    </div>
+    <div class="progress-bar"><div class="fill"></div></div>
+    <video preload="metadata" src="videos/voice-over/ads.mp4"></video>
+  </div>
+  <div class="reel-item">
+    <div class="reel-status"><i class="fa-solid fa-spinner fa-pulse"></i><span>loading</span></div>
+    <div class="reel-overlay">
+      <div class="top-left"><div class="vid-label"><span>Voice Over</span></div></div>
+      <div class="top-right"></div>
+      <div class="play-center"><i class="fa-solid fa-play"></i></div>
+      <div class="bottom"><div class="vid-label">FS 10</div></div>
+    </div>
+    <div class="progress-bar"><div class="fill"></div></div>
+    <video preload="metadata" src="videos/voice-over/fs 10 .mp4"></video>
+  </div>
+  <div class="reel-item">
+    <div class="reel-status"><i class="fa-solid fa-spinner fa-pulse"></i><span>loading</span></div>
+    <div class="reel-overlay">
+      <div class="top-left"><div class="vid-label"><span>Voice Over</span></div></div>
+      <div class="top-right"></div>
+      <div class="play-center"><i class="fa-solid fa-play"></i></div>
+      <div class="bottom"><div class="vid-label">FS 3</div></div>
+    </div>
+    <div class="progress-bar"><div class="fill"></div></div>
+    <video preload="metadata" src="videos/voice-over/fs 3 .mp4"></video>
+  </div>
+  <div class="reel-item">
+    <div class="reel-status"><i class="fa-solid fa-spinner fa-pulse"></i><span>loading</span></div>
+    <div class="reel-overlay">
+      <div class="top-left"><div class="vid-label"><span>Voice Over</span></div></div>
+      <div class="top-right"></div>
+      <div class="play-center"><i class="fa-solid fa-play"></i></div>
+      <div class="bottom"><div class="vid-label">Graini Bio</div></div>
+    </div>
+    <div class="progress-bar"><div class="fill"></div></div>
+    <video preload="metadata" src="videos/voice-over/graini bio .mp4"></video>
+  </div>
+  <div class="reel-item">
+    <div class="reel-status"><i class="fa-solid fa-spinner fa-pulse"></i><span>loading</span></div>
+    <div class="reel-overlay">
+      <div class="top-left"><div class="vid-label"><span>Voice Over</span></div></div>
+      <div class="top-right"></div>
+      <div class="play-center"><i class="fa-solid fa-play"></i></div>
+      <div class="bottom"><div class="vid-label">Yasmina 4</div></div>
+    </div>
+    <div class="progress-bar"><div class="fill"></div></div>
+    <video preload="metadata" src="videos/voice-over/yasmina 4.mp4"></video>
+  </div>
+</div>
+
+<div class="counter">1 / 5</div>
+
+<script>
+(function(){
+  const items = document.querySelectorAll('.reel-item');
+  const counter = document.querySelector('.counter');
+  items.forEach((item, idx) => {
+    const video = item.querySelector('video');
+    const status = item.querySelector('.reel-status');
+    const fill = item.querySelector('.progress-bar .fill');
+    const playCenter = item.querySelector('.play-center');
+    const topRight = item.querySelector('.top-right');
+    const muteBtn = document.createElement('button');
+    muteBtn.className = 'ctrl-btn';
+    muteBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+    muteBtn.title = 'Mute';
+    topRight.appendChild(muteBtn);
+    muteBtn.addEventListener('click', (e) => { e.stopPropagation(); video.muted = !video.muted; muteBtn.innerHTML = video.muted ? '<i class="fa-solid fa-volume-xmark"></i>' : '<i class="fa-solid fa-volume-high"></i>'; });
+    const togglePlay = () => { if (video.paused) { video.play(); item.classList.remove('paused'); } else { video.pause(); item.classList.add('paused'); } };
+    video.addEventListener('click', togglePlay);
+    playCenter.addEventListener('click', (e) => { e.stopPropagation(); togglePlay(); });
+    video.addEventListener('timeupdate', () => { if (video.duration) fill.style.width = (video.currentTime / video.duration * 100) + '%'; });
+    video.addEventListener('ended', () => { item.classList.add('paused'); playCenter.innerHTML = '<i class="fa-solid fa-rotate-right"></i>'; });
+    let timedOut = false;
+    const timer = setTimeout(() => { if (!item.classList.contains('loaded')) { timedOut = true; status.innerHTML = '<i class="fa-solid fa-clock"></i><span>taking too long</span>'; item.classList.add('error'); } }, 20000);
+    video.addEventListener('canplay', () => { clearTimeout(timer); item.classList.add('loaded'); });
+    video.addEventListener('loadeddata', () => { clearTimeout(timer); item.classList.add('loaded'); });
+    video.addEventListener('error', () => { clearTimeout(timer); const msg = video.error ? video.error.message || ('code '+video.error.code) : 'unknown'; status.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i><span>'+msg+'</span>'; item.classList.add('error'); });
+    if (video.readyState >= 2) { clearTimeout(timer); item.classList.add('loaded'); }
+    const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { video.play().catch(()=>{}); item.classList.remove('paused'); counter.textContent = (idx + 1) + ' / ' + items.length; } else { video.pause(); item.classList.add('paused'); } }); }, { threshold: 0.6 });
+    observer.observe(item);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="expires" content="0">
+<title>fs portfolio .11</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Tajawal:wght@300;400;500;700&family=Cormorant+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --black:#0a0a0c;
+  --black-2:#141417;
+  --santiago:#e07a45;
+  --santiago-2:#f4995f;
+  --foam:#e6f4f2;
+  --foam-dim:#b9d4d0;
+  --gold:#cfa855;
+  --gold-2:#8a6f2f;
+  --glass-bd:rgba(255,255,255,0.10);
+  --glass-bg:rgba(255,255,255,0.045);
+}
+@font-face{font-family:'TS Safaa';src:url('TS-Safaa-Regular.otf') format('opentype');font-weight:400;font-style:normal;}
+@font-face{font-family:'TS Safaa';src:url('TS-Safaa-Regular.otf') format('opentype');font-weight:700;font-style:normal;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--black);
+  color:var(--foam);
+  font-family:'Tajawal',sans-serif;
+  overflow-x:hidden;
+  position:relative;
+}
+::selection{background:var(--santiago);color:#0a0a0c;}
+
+/* ---------- ambient texture ---------- */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(224,122,69,0.10), transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(207,168,85,0.08), transparent 50%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  min-height:100svh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+.pawn-field{position:absolute;inset:0;z-index:1;pointer-events:none;}
+.pawn{
+  position:absolute;
+  filter:drop-shadow(0 0 18px rgba(207,168,85,0.35));
+  animation:drift 14s ease-in-out infinite;
+  mix-blend-mode:screen;
+}
+.pawn i{font-size:inherit;color:var(--gold);}
+.pawn.p1{font-size:64px;top:12%;left:8%;animation-delay:0s;opacity:.85;}
+.pawn.p2{font-size:48px;top:18%;left:16%;animation-delay:-3s;opacity:.6;}
+.pawn.p3{font-size:80px;bottom:10%;right:10%;animation-delay:-6s;opacity:.8;}
+.pawn.p4{font-size:54px;bottom:20%;right:18%;animation-delay:-9s;opacity:.55;}
+.pawn.p5{font-size:38px;top:55%;left:4%;animation-delay:-2s;opacity:.45;}
+.pawn.p6{font-size:42px;top:60%;right:6%;animation-delay:-5s;opacity:.5;}
+
+@keyframes drift{
+  0%,100%{transform:translate3d(0,0,0) rotate(0deg);}
+  25%{transform:translate3d(14px,-18px,0) rotate(3deg);}
+  50%{transform:translate3d(-10px,10px,0) rotate(-4deg);}
+  75%{transform:translate3d(10px,16px,0) rotate(2deg);}
+}
+
+.hero-inner{position:relative;z-index:2;}
+
+.roman-mark{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-55%);
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:min(38vw,520px);
+  color:rgba(207,168,85,0.05);
+  z-index:0;
+  user-select:none;
+  letter-spacing:6px;
+}
+
+.title-portfolio{
+  font-family:Impact,'Arial Narrow Bold',sans-serif;
+  font-size:clamp(3.2rem,13vw,9rem);
+  letter-spacing:-0.02em;
+  color:var(--foam);
+  text-transform:uppercase;
+  line-height:0.9;
+  text-shadow:0 0 40px rgba(230,244,242,0.3);
+  position:relative;
+  z-index:2;
+}
+
+.brand-script{
+  font-family:'Alex Brush',cursive;
+  font-size:clamp(1.8rem,5vw,3.4rem);
+  letter-spacing:-0.03em;
+  margin-top:-0.9rem;
+  background:linear-gradient(90deg,var(--gold-2),var(--gold) 45%,var(--santiago-2) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  display:inline-block;
+  position:relative;
+  z-index:2;
+}
+.brand-script::after{
+  content:"";
+  display:block;
+  height:1px;width:70%;margin:0.35rem auto 0;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  box-shadow:0 0 12px var(--gold);
+}
+
+.hero-sub{
+  margin-top:2rem;
+  font-size:0.95rem;
+  letter-spacing:0.35em;
+  text-transform:uppercase;
+  color:var(--foam-dim);
+  font-family:'Tajawal',sans-serif;
+  direction:ltr;
+}
+
+.scroll-cue{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  width:26px;height:42px;border:1.5px solid rgba(230,244,242,0.35);
+  border-radius:20px;z-index:2;
+}
+.scroll-cue::before{
+  content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);
+  width:4px;height:8px;border-radius:2px;background:var(--santiago-2);
+  animation:scrolldot 1.8s ease-in-out infinite;
+}
+@keyframes scrolldot{0%{opacity:1;top:6px;}70%{opacity:0;top:20px;}100%{opacity:0;top:6px;}}
+
+/* ---------- section shell ---------- */
+section{position:relative;z-index:1;padding:7rem 6vw;}
+.eyebrow{
+  font-family:Impact,'Arial Narrow Bold',sans-serif;
+  letter-spacing:0.3em;text-transform:uppercase;font-size:0.85rem;
+  color:var(--santiago-2);text-align:center;direction:ltr;
+}
+.section-title-ar{
+  font-family:'TS Safaa','Lalezar',sans-serif;
+  font-weight:700;
+  font-size:clamp(2.2rem,5vw,3.4rem);
+  text-align:center;
+  margin-top:0.4rem;
+  letter-spacing:0.02em;
+  word-spacing:0.15em;
+  background:linear-gradient(90deg,var(--foam),var(--gold) 60%,var(--santiago-2));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* ---------- PROCESS ---------- */
+.process{background:linear-gradient(180deg,var(--black),#0c0c10);position:relative;overflow:hidden;}
+.process-steps{
+  position:relative;z-index:1;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:3.5rem;
+  margin-top:4.5rem;
+}
+.step{
+  width:220px;text-align:center;
+}
+.step-circle{
+  width:135px;height:135px;border-radius:50%;
+  margin:0 auto 1.3rem;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.10), rgba(255,255,255,0.02) 60%);
+  border:1px solid var(--glass-bd);
+  backdrop-filter:blur(14px);
+  box-shadow:
+    0 0 0 1px rgba(207,168,85,0.08),
+    0 0 40px rgba(224,122,69,0.18),
+    inset 0 0 30px rgba(255,255,255,0.04);
+  transition:transform .4s ease, box-shadow .4s ease;
+}
+.step-circle::before{
+  content:"";position:absolute;inset:-2px;border-radius:50%;
+  background:conic-gradient(from 0deg,var(--santiago),var(--gold),var(--santiago-2),var(--santiago));
+  opacity:.35;filter:blur(6px);z-index:-1;
+  animation:spin 8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+.step:hover .step-circle{transform:translateY(-8px);box-shadow:0 0 0 1px rgba(207,168,85,0.15),0 0 60px rgba(224,122,69,0.32);}
+.step-num{
+  font-family:'TS Safaa','Lalezar',sans-serif;
+  font-size:2rem;color:var(--gold);
+  text-shadow:0 0 18px rgba(207,168,85,0.6);
+}
+.step h3{
+  font-family:'TS Safaa','Lalezar',sans-serif;font-weight:700;
+  font-size:1.4rem;color:var(--foam);letter-spacing:0.02em;
+}
+.step-arrow{
+  display:flex;align-items:center;
+  color:var(--gold);font-size:2rem;opacity:0.5;
+}
+
+/* ---------- SERVICES ---------- */
+.services{background:#0a0a0c;}
+.services-sub{text-align:center;color:var(--foam-dim);margin-top:0.6rem;font-size:1rem;font-weight:300;}
+.service-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;margin-top:4rem;max-width:1100px;margin-inline:auto;
+}
+.service-card{
+  position:relative;
+  border-radius:26px;
+  padding:3rem 1.5rem 2.4rem;
+  text-align:center;
+  text-decoration:none;color:inherit;
+  background:linear-gradient(160deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015));
+  border:1px solid var(--glass-bd);
+  backdrop-filter:blur(18px) saturate(140%);
+  overflow:hidden;
+  transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease, border-color .45s ease;
+}
+.service-card::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%, rgba(224,122,69,0.20), transparent 60%);
+  opacity:0;transition:opacity .5s ease;
+}
+.service-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(207,168,85,0.4);
+  box-shadow:0 20px 60px rgba(0,0,0,0.45),0 0 40px rgba(224,122,69,0.18);
+}
+.service-card:hover::before{opacity:1;}
+.service-icon{
+  width:78px;height:78px;border-radius:50%;margin:0 auto 1.4rem;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.14), rgba(255,255,255,0.02));
+  border:1px solid rgba(207,168,85,0.35);
+  box-shadow:0 0 30px rgba(207,168,85,0.25), inset 0 0 16px rgba(255,255,255,0.05);
+  position:relative;z-index:1;
+}
+.service-icon i{font-size:1.7rem;background:linear-gradient(180deg,var(--gold),var(--santiago-2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.service-card h3{
+  position:relative;z-index:1;
+  font-family:'TS Safaa','Lalezar',sans-serif;font-weight:700;font-size:1.35rem;
+  color:var(--foam);
+}
+.service-card .goto{
+  position:relative;z-index:1;
+  display:inline-block;margin-top:1.1rem;font-size:0.75rem;letter-spacing:0.25em;
+  text-transform:uppercase;color:var(--santiago-2);direction:ltr;
+}
+
+/* ---------- TESTIMONIALS ---------- */
+.testimonials{background:linear-gradient(180deg,#0c0c10,var(--black));}
+.t-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:4rem;max-width:1150px;margin-inline:auto;}
+.t-card{
+  border-radius:22px;padding:2.4rem 2rem;
+  background:var(--glass-bg);border:1px solid var(--glass-bd);
+  backdrop-filter:blur(16px);
+  position:relative;
+}
+.t-card i.fa-quote-right{position:absolute;top:1.4rem;right:1.6rem;color:rgba(207,168,85,0.35);font-size:1.4rem;}
+.t-card p{font-weight:300;line-height:1.9;color:var(--foam);font-size:0.98rem;}
+.t-name{margin-top:1.4rem;font-family:'TS Safaa','Lalezar',sans-serif;color:var(--santiago-2);font-size:1.05rem;}
+
+/* ---------- TRUSTED BY ---------- */
+.trusted{background:#0a0a0c;padding-top:5rem;padding-bottom:5rem;}
+.marquee{margin-top:3.5rem;overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);}
+.marquee-track{display:flex;gap:4.5rem;width:max-content;animation:scroll 26s linear infinite;}
+.marquee span{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.5rem;color:var(--foam-dim);letter-spacing:0.04em;white-space:nowrap;direction:ltr;
+}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ---------- INFO STRIP ---------- */
+.info-strip{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:2.5rem;
+  background:linear-gradient(90deg,transparent,rgba(207,168,85,0.06),transparent);
+  border-block:1px solid var(--glass-bd);
+  padding:2.5rem 6vw;
+  position:relative;z-index:1;
+}
+.info-item{
+  display:flex;align-items:center;gap:0.7rem;
+  font-size:1.05rem;color:var(--foam-dim);letter-spacing:0.05em;direction:ltr;
+}
+.info-item i{color:var(--gold);font-size:1.2rem;}
+
+/* ---------- CONTACT ---------- */
+.contact{background:linear-gradient(180deg,var(--black),#0c0c10);text-align:center;}
+.contact-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(2.2rem,5vw,3.2rem);color:var(--foam);direction:ltr;}
+.location-line{margin-top:0.8rem;color:var(--foam-dim);letter-spacing:0.2em;font-size:0.85rem;text-transform:uppercase;direction:ltr;}
+.contact-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:1.6rem;margin-top:3.2rem;}
+.contact-box{
+  width:200px;padding:2.2rem 1rem;border-radius:20px;
+  background:var(--glass-bg);border:1px solid var(--glass-bd);
+  backdrop-filter:blur(16px);color:inherit;text-decoration:none;
+  display:flex;flex-direction:column;align-items:center;gap:0.8rem;
+  transition:transform .4s ease, box-shadow .4s ease, border-color .4s ease;
+}
+.contact-box i{font-size:1.8rem;}
+.contact-box.whatsapp i{color:#39d67a;}
+.contact-box.facebook i{color:#5b8def;}
+.contact-box.instagram i{color:var(--santiago-2);}
+.contact-box span{font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;direction:ltr;color:var(--foam-dim);}
+.contact-box:hover{transform:translateY(-8px);border-color:rgba(207,168,85,0.4);box-shadow:0 16px 40px rgba(0,0,0,0.4);}
+
+footer{
+  text-align:center;padding:3rem 1rem 2.5rem;font-size:0.75rem;color:rgba(230,244,242,0.3);
+  position:relative;
+}
+footer .roman-foot{
+  font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(207,168,85,0.15);
+  font-size:1rem;letter-spacing:0.3em;display:block;margin-bottom:0.5rem;
+}
+
+@media(max-width:640px){
+  .process-steps{gap:2.2rem;}
+  section{padding:5rem 6vw;}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="pawn-field">
+    <div class="pawn p1"><i class="fa-solid fa-camera"></i></div>
+    <div class="pawn p2"><i class="fa-solid fa-clapperboard"></i></div>
+    <div class="pawn p3"><i class="fa-solid fa-microphone"></i></div>
+    <div class="pawn p4"><i class="fa-solid fa-camera-retro"></i></div>
+    <div class="pawn p5"><i class="fa-solid fa-video"></i></div>
+    <div class="pawn p6"><i class="fa-solid fa-microphone-lines"></i></div>
+  </div>
+  <div class="hero-inner">
+    <div class="roman-mark">XI</div>
+    <h1 class="title-portfolio">Portfolio</h1>
+    <div class="brand-script">First Step Studio</div>
+    <p class="hero-sub">Photography · Video Editing · Voice Over</p>
+  </div>
+  <div class="scroll-cue"></div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process" id="process">
+  <p class="eyebrow">Our Process</p>
+  <h2 class="section-title-ar">طريقة العمل</h2>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-circle"><span class="step-num">1</span></div>
+      <h3>دراسة المشروع</h3>
+    </div>
+    <span class="step-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+    <div class="step">
+      <div class="step-circle"><span class="step-num">2</span></div>
+      <h3>الدفع</h3>
+    </div>
+    <span class="step-arrow"><i class="fa-solid fa-arrow-left"></i></span>
+    <div class="step">
+      <div class="step-circle"><span class="step-num">3</span></div>
+      <h3>التسليم</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <p class="eyebrow">Services</p>
+  <p class="services-sub">خدماتنا الاحترافية</p>
+  <div class="service-grid">
+    <a class="service-card" href="reel-photography.html" target="_blank" rel="noopener">
+      <div class="service-icon"><i class="fa-solid fa-camera-retro"></i></div>
+      <h3>التصوير و UGC</h3>
+      <span class="goto">View Reel <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+    </a>
+    <a class="service-card" href="reel-video.html" target="_blank" rel="noopener">
+      <div class="service-icon"><i class="fa-solid fa-clapperboard"></i></div>
+      <h3>الفيديو إديت</h3>
+      <span class="goto">View Reel <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+    </a>
+    <a class="service-card" href="reel-voice.html" target="_blank" rel="noopener">
+      <div class="service-icon"><i class="fa-solid fa-microphone-lines"></i></div>
+      <h3>التعليق الصوتي</h3>
+      <span class="goto">View Reel <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+    </a>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials" id="feedback">
+  <p class="eyebrow">Client Feedback</p>
+  <h2 class="section-title-ar">آراء عملائنا</h2>
+  <div class="t-grid">
+    <div class="t-card">
+      <i class="fa-solid fa-quote-right"></i>
+      <p>تعامل احترافي من البداية للنهاية، جودة التصوير والمونتاج فاقت توقعاتنا وسلمونا العمل في الوقت المحدد.</p>
+      <div class="t-name">— ياسمين ك.</div>
+    </div>
+    <div class="t-card">
+      <i class="fa-solid fa-quote-right"></i>
+      <p>فريق First Step Studio فهم رؤيتنا بسرعة وحول الأفكار إلى محتوى بصري راقي يعكس هوية العلامة.</p>
+      <div class="t-name">— سارة ب.</div>
+    </div>
+    <div class="t-card">
+      <i class="fa-solid fa-quote-right"></i>
+      <p>التعليق الصوتي كان دقيق واحترافي، والتنسيق سهل جدا. تجربة تعامل ننصح بها بقوة.</p>
+      <div class="t-name">— كريم م.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUSTED BY ================= -->
+<section class="trusted">
+  <p class="eyebrow">Trusted By</p>
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>Maison Acacia</span><span>Bab Doukan</span><span>Girini Bio</span><span>HOCO</span><span>Peak</span><span>Oscar Fashion</span><span>&amp; More</span>
+      <span>Maison Acacia</span><span>Bab Doukan</span><span>Girini Bio</span><span>HOCO</span><span>Peak</span><span>Oscar Fashion</span><span>&amp; More</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INFO STRIP ================= -->
+<section class="info-strip">
+  <div class="info-item">
+    <i class="fa-solid fa-phone"></i>
+    <span>+213 549 181 248</span>
+  </div>
+  <div class="info-item">
+    <i class="fa-solid fa-location-dot"></i>
+    <span>Alger &amp; Chlef</span>
+  </div>
+  <div class="info-item">
+    <i class="fa-brands fa-instagram"></i>
+    <span>@firststepstudio</span>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <h2 class="contact-title">Contactez-nous</h2>
+  <p class="location-line">Alger &amp; Chlef</p>
+  <div class="contact-grid">
+    <a class="contact-box whatsapp" href="https://wa.me/213549181248" target="_blank" rel="noopener">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+    <a class="contact-box facebook" href="https://facebook.com/firststepstudio" target="_blank" rel="noopener">
+      <i class="fa-brands fa-facebook"></i>
+      <span>Facebook</span>
+    </a>
+    <a class="contact-box instagram" href="https://instagram.com/firststepstudio" target="_blank" rel="noopener">
+      <i class="fa-brands fa-instagram"></i>
+      <span>Instagram</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="roman-foot">XI</span>
+  © 2026 First Step Studio — All rights reserved.
+</footer>
+
+<script>
+// Subtle parallax for icons on mouse move
+const field = document.querySelector('.pawn-field');
+document.querySelector('.hero').addEventListener('mousemove', (e)=>{
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+  field.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+// Fade-in on scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{
+    if(en.isIntersecting){
+      en.target.style.opacity = 1;
+      en.target.style.transform = 'translateY(0)';
+    }
+  });
+},{threshold:0.15});
+document.querySelectorAll('section').forEach(s=>{
+  s.style.opacity = 0;
+  s.style.transform = 'translateY(24px)';
+  s.style.transition = 'opacity .9s ease, transform .9s ease';
+  io.observe(s);
+});
+document.querySelector('.hero').style.opacity = 1;
+document.querySelector('.hero').style.transform = 'none';
+</script>
+</body>
+</html>
