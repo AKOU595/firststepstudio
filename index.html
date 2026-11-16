@@ -179,34 +179,6 @@ section{position:relative;z-index:1;padding:7rem 6vw;}
   box-shadow:0 0 12px var(--gold);
 }
 
-/* ---------- SERVICES ---------- */
-.services{background:#0a0a0c;}
-/* one box, three services side by side: icons only, nothing to click */
-.service-box{
-  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  max-width:900px;margin:4rem auto 0;padding:3rem 1.5rem;
-  border-radius:28px;
-  background:linear-gradient(160deg,rgba(255,255,255,0.05),rgba(255,255,255,0.012));
-  border:1px solid var(--glass-bd);
-  box-shadow:0 20px 60px rgba(0,0,0,0.35);
-}
-.service-item{position:relative;text-align:center;padding:0 1rem;}
-.service-item+.service-item::before{
-  content:"";position:absolute;inset-inline-start:0;top:12%;bottom:12%;width:1px;
-  background:linear-gradient(180deg,transparent,rgba(207,168,85,0.45),transparent);
-}
-.service-icon{
-  width:96px;height:96px;border-radius:50%;margin:0 auto 1.3rem;
-  display:flex;align-items:center;justify-content:center;
-  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.14), rgba(255,255,255,0.02));
-  border:1px solid rgba(207,168,85,0.35);
-  box-shadow:0 0 34px rgba(207,168,85,0.25), inset 0 0 16px rgba(255,255,255,0.05);
-}
-.service-icon i{font-size:2.1rem;background:linear-gradient(180deg,var(--gold),var(--santiago-2));-webkit-background-clip:text;background-clip:text;color:transparent;}
-.service-item h3{
-  font-family:'TS Safaa','Lalezar',sans-serif;font-weight:700;font-size:1.4rem;
-  color:var(--foam);
-}
 
 /* ---------- VIDEO FRAMES ---------- */
 .frame{
@@ -376,11 +348,6 @@ footer .roman-foot{
   section{padding:5rem 6vw;}
   .more{padding-top:2rem;}
   .pawn.p1,.pawn.p2,.pawn.p3,.pawn.p4,.pawn.p5,.pawn.p6{transform:scale(0.7);}
-  .service-box{padding:2rem 0.4rem;border-radius:22px;margin-top:3rem;}
-  .service-item{padding:0 0.4rem;}
-  .service-icon{width:62px;height:62px;margin-bottom:0.9rem;}
-  .service-icon i{font-size:1.35rem;}
-  .service-item h3{font-size:clamp(0.8rem,3.6vw,1rem);white-space:nowrap;}
   .contact-box{width:160px;padding:1.6rem 0.8rem;}
   .contact-box i{font-size:1.4rem;}
   .t-card{padding:1.6rem 1.2rem;}
@@ -416,26 +383,6 @@ footer .roman-foot{
   <h2 class="section-title-ar">من نحن</h2>
   <p class="about-text">فريق جاد ومتكامل يحوّل أفكارك ومشاريعك إلى فيديوهات محترفة.</p>
   <span class="about-line"></span>
-</section>
-
-<!-- ================= SERVICES ================= -->
-<section class="services" id="services">
-  <p class="eyebrow">Services</p>
-  <h2 class="section-title-ar">خدماتنا</h2>
-  <div class="service-box">
-    <div class="service-item">
-      <div class="service-icon"><i class="fa-solid fa-camera-retro"></i></div>
-      <h3>تصوير</h3>
-    </div>
-    <div class="service-item">
-      <div class="service-icon"><i class="fa-solid fa-clapperboard"></i></div>
-      <h3>فيديو إيديت</h3>
-    </div>
-    <div class="service-item">
-      <div class="service-icon"><i class="fa-solid fa-microphone-lines"></i></div>
-      <h3>تعليق صوتي</h3>
-    </div>
-  </div>
 </section>
 
 <!-- ================= TOP 3 VIDEOS ================= -->
